@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    depends_on:
+      database:
+        condition: service_healthy
+  database:
+    image: neo4j:5.11
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

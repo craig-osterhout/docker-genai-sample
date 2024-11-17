@@ -1,7 +1,7 @@
-streamlit
+streamlit==1.38.0
 langchain==0.0.324
-neo4j
+neo4j==5.24.0
 sentence_transformers==2.2.2
-torch==2.0.1
-PyPDF2
+torch==2.2.1
+PyPDF2==3.0.1
 openai==0.28.1
